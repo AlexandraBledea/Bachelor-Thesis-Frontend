@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {MatButtonModule} from '@angular/material/button';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -8,21 +8,18 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 
-import { LoginPanelComponent } from './login-panel.component';
-import { Routes } from '@angular/router';
-import { RegisterFormComponent } from './register-form/register-form.component';
+import {LoginPanelComponent} from './login-panel/login-panel.component';
+import {Router, RouterModule, Routes} from '@angular/router';
 import {MatCardModule} from "@angular/material/card";
+import {RegisterPanelComponent} from "./register-panel/register-panel.component";
+
 const routes: Routes = [
-  {
-    path: 'login', component: LoginPanelComponent
- }
+  {path: 'login', component: LoginPanelComponent},
+  {path: 'register', component: RegisterPanelComponent}
 ]
+
 @NgModule({
-  declarations: [
-
-
-    RegisterFormComponent
-  ],
+  declarations: [],
   imports: [
     MatButtonModule,
     MatSelectModule,
@@ -34,8 +31,6 @@ const routes: Routes = [
     MatCardModule,
   ],
   providers: [],
-  exports: [
-    RegisterFormComponent
-  ]
 })
-export class LoginPanelModule { }
+export class LoginPanelModule {
+}

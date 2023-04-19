@@ -8,9 +8,9 @@
     margin-right: 8px;
 }
 
-
 ::ng-deep mat-form-field {
   width: 320px;
+
 }
 
 @media screen and ( max-width: 500px ) {
@@ -19,12 +19,12 @@
   }
 }
 
-
 @media screen and ( max-width: 500px ) {
   mat-form-field {
     width: 80%;
   }
 }
+
 .password-hint {
   width: 325px;
   font-size: 12px;

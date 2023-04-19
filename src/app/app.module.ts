@@ -16,28 +16,32 @@ import { LoginPanelComponent } from './landing/login-panel/login-panel.component
 import { LoginResetFormComponent } from './landing/login-panel/login-reset-form/login-reset-form.component';
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
-import {LoginPanelModule} from "./landing/login-panel/login-panel.module";
+import {LoginPanelModule} from "./landing/login-panel.module";
+import { RegisterPanelComponent } from './landing/register-panel/register-panel.component';
+import {RegisterFormComponent} from "./landing/register-panel/register-form/register-form.component";
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
     LoginPanelComponent,
-    LoginResetFormComponent
+    LoginResetFormComponent,
+    RegisterPanelComponent,
+    RegisterFormComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatSlideToggleModule,
-    MatCardModule,
-    MatFormFieldModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    MatInputModule,
-    MatButtonModule,
-    LoginPanelModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatSlideToggleModule,
+        MatCardModule,
+        MatFormFieldModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        MatInputModule,
+        MatButtonModule,
+        LoginPanelModule,
+    ],
   providers: [],
 
   bootstrap: [AppComponent]

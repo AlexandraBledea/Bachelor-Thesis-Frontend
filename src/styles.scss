@@ -41,7 +41,7 @@ $thesis-theme: mat.define-light-theme((
 html, body { height: 100%; }
 body { margin: 0; background-color: v.$grey; font-family: Roboto, "Helvetica Neue", sans-serif !important; }
 //
-mat-raised-button{
+.mat-mdc-raised-button{
   box-shadow: none !important;
   color: white !important;
 }
@@ -68,10 +68,11 @@ h3 {
 }
 
 .bg-card {
-  width: 360px !important;
+  width: 380px !important;
   margin-left: auto !important;
   margin-right: auto !important;
   border-radius: 30px !important;
+  box-shadow: none !important;
   text-align: center;
 }
 

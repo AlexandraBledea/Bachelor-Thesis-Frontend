@@ -1,4 +1,5 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-panel',
@@ -9,11 +10,13 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 export class LoginPanelComponent implements OnInit{
 
   showFormLogin? = true;
-  showFormChangePassword? = false;
-  showFormCreateAccount? = false;
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
+  goToRegister() {
+    this.router.navigate(['/register'])
+
+  }
 }
