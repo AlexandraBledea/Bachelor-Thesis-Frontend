@@ -1,0 +1,21 @@
+<div>
+  <form id="login-form" [formGroup]="loginUserDataFormGroup" (ngSubmit) = "loginUser()">
+    <br>
+    <mat-card class="password-hint" *ngIf="showPasswordErrorMessage">The email or the password is incorrect.</mat-card>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-icon matPrefix>alternate_email</mat-icon>
+      <input matInput placeholder=" Email" formControlName="email" (click)="resetWarnings()">
+    </mat-form-field><br>
+    <mat-form-field appearance="outline" color="accent">
+      <mat-icon matPrefix>lock</mat-icon>
+      <input matInput placeholder=" Password" [type]="hidePassword ? 'password' : 'text'" formControlName="password" (click)="resetWarnings()">
+      <button mat-icon-button matSuffix type="button" (click)="hidePassword = !hidePassword" [attr.aria-label]="'hidePassword password'" [attr.aria-pressed]="hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field><br>
+    <br>
+    <button mat-raised-button type="submit" id="form-button" color="accent">Login</button>
+    <br><br>
+  </form>
+</div>
+

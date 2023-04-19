@@ -1,0 +1,222 @@
+@use '_variables' as v;
+@use '@angular/material' as mat;
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$thesis-primary: mat.define-palette(mat.$indigo-palette);
+$thesis-accent: mat.define-palette(mat.$deep-purple-palette);
+
+// The warn palette is optional (defaults to red).
+$thesis-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$thesis-theme: mat.define-light-theme((
+  color: (
+    primary: $thesis-primary,
+    accent: $thesis-accent,
+    red: $thesis-warn)
+),
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.core-theme($thesis-theme);
+@include mat.button-theme($thesis-theme);
+@import "@angular/material/prebuilt-themes/indigo-pink.css";
+/* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; background-color: v.$grey; font-family: Roboto, "Helvetica Neue", sans-serif !important; }
+//
+mat-raised-button{
+  box-shadow: none !important;
+  color: white !important;
+}
+centered {
+  text-align: center;
+}
+mat-card {
+  box-shadow: none !important;
+  //overflow-x: auto;
+}
+
+h1 {
+  font-weight: bold !important;
+}
+h2 {
+  padding-top: 12px;
+  font-weight: bold !important;
+}
+margin {
+  margin-left: 20px !important;
+}
+h3 {
+  font-weight: bold !important;
+}
+
+.bg-card {
+  width: 360px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  border-radius: 30px !important;
+  text-align: center;
+}
+
+@media screen and ( max-width: 500px ) {
+  .bg-card {
+    width: 80% !important;
+  }
+}
+//
+//.mat-raised-button.mat-green {
+//  background-color: v.$green;
+//}
+//.mat-raised-button.mat-red {
+//  background-color: v.$red;
+//}
+//.mat-button.mat-grey {
+//  color: v.$grey-dark;
+//}
+//.mat-icon.mat-green {
+//  color: v.$green;
+//}
+//.mat-icon.mat-red {
+//  color: v.$red;
+//}
+//.mat-icon.mat-blue {
+//  color: v.$blue;
+//}
+//.mat-raised-button.mat-blue {
+//  background-color: v.$blue;
+//}
+//.mat-icon.mat-blue-bg {
+//  background-color: v.$blue;
+//  color: v.$white;
+//}
+//.mat-icon.mat-green-bg {
+//  background-color: v.$green;
+//  color: v.$white;
+//}
+//.mat-mini-fab.mat-blue-bg {
+//  background-color: v.$blue;
+//}
+//.mat-mini-fab.mat-green-bg {
+//  background-color: v.$green;
+//}
+//// TABLE CSS
+//.mat-table {
+//  width: 100%;
+//}
+//.mat-row:nth-child(2n) {
+//  background-color: v.$grey-light;
+//}
+//.mat-header-cell:not(:first-child) {
+//  padding-left: 0;
+//}
+//.mat-header-cell:first-child {
+//  border-top-left-radius: 10px;
+//}
+//.mat-header-cell:last-child {
+//  border-top-right-radius: 10px;
+//}
+//
+//.mat-column-name {
+//  max-width: 100px;
+//}
+//
+//.mat-header-cell {
+//  border: none !important;
+//  flex-direction: column;
+//  padding-top: 10px !important;
+//  font-size: 14px;
+//  text-align: center;
+//  font-weight: bold;
+//  color: v.$pink-secondary;
+//  background-color: v.$pink-light;
+//  padding: 4px !important;
+//  padding-top: 12px !important;
+//}
+//.mat-cell {
+//  text-align: left !important;
+//  padding: 4px !important;
+//  white-space: normal;
+//  word-wrap: break-word;
+//  border: none !important;
+//}
+//
+//.mat-cell:first-child {
+//  text-align: left !important;
+//  padding: 4px !important;
+//  white-space: normal;
+//  word-wrap: break-word;
+//  border: none !important;
+//  padding-left: 12px !important;
+//}
+//
+//.mat-header-cell:first-child {
+//  padding-left: 12px !important;
+//}
+//.mat-header-cell:last-child {
+//  padding-right: 12px !important;
+//}
+//
+//.mat-header-cell:not(:first-child) {
+//  padding-left: 0;
+//}
+//
+//.mat-header-cell:first-child {
+//  border-top-left-radius: 12px;
+//}
+//.mat-header-row {
+//  height: 3em !important;
+//}
+//
+//.mat-row:nth-child(2n) {
+//  background-color: #f2f2f2;
+//}
+//.state-cell {
+//  text-align: right;
+//}
+//.table-card {
+//  border-radius: 24px !important;
+//  margin: 12px;
+//  display: block;
+//  text-align: center !important;
+//}
+//.edit-cell {
+//  text-align: center !important;
+//}
+//.status-cell {
+//  text-align: center !important;
+//}
+//.delete-cell {
+//  text-align: center !important;
+//  padding-right: 12px !important;
+//}
+//
+///// END OF TABLE CSS
+//.request-msg-green {
+//  color: v.$green;
+//  font-weight: bold;
+//}
+//.request-msg-red {
+//  color: v.$red;
+//  font-weight: bold;
+//}
+//.request-msg-blue {
+//  color: v.$blue;
+//  font-weight: bold;
+//}

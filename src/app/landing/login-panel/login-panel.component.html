@@ -1,0 +1,13 @@
+<div id="div-login-panel">
+    <h2>{{showFormLogin? "Login" : "Change Password"}}</h2>
+    <mat-card class="bg-card" *ngIf="showFormLogin">
+        <app-login-form *ngIf="showFormLogin"></app-login-form>
+    </mat-card>
+    <mat-card class="bg-card" *ngIf="!showFormLogin && showFormChangePassword">
+        <app-login-reset-form *ngIf="!showFormLogin && showFormChangePassword"></app-login-reset-form>
+    </mat-card>
+  <mat-card class="bg-card" *ngIf="!showFormLogin && !showFormChangePassword">
+    <app-register-form *ngIf="!showFormLogin && showFormChangePassword"></app-register-form>
+  </mat-card>
+    <button mat-button color="accent" type="button" (click)="showFormLogin = !showFormLogin" id="form-button">{{showFormLogin? "Change password" : "Back to login"}}</button>
+</div>
