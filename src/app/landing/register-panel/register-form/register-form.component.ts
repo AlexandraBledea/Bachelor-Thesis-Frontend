@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {UserRegisterData} from "../../../shared/data-type/UserRegisterData";
+import {UserService} from "../../../service/user.service";
 
 @Component({
   selector: 'app-register-form',
@@ -15,6 +17,7 @@ export class RegisterFormComponent {
 
   showCreateAccountErrorMessage = false;
   showCreateAccountSuccessfulMessage = false;
+  errorMessage = ""
 
   registerFormGroup = this.formBuilder.group({
     firstname: ["", Validators.required],
@@ -25,13 +28,48 @@ export class RegisterFormComponent {
     password2: ["", Validators.required],
   })
 
-  constructor(private formBuilder: FormBuilder, private router: Router) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private service: UserService) {
   }
 
   ngOnInit(): void {
   }
 
-  createAccount(){
+  createAccount() {
+    const valuesFromForm = this.registerFormGroup.value;
+
+    const passwordDoNotMatch = (valuesFromForm.password1 != valuesFromForm.password2);
+    const anyFieldIsEmpty = (valuesFromForm.password1 === '' || valuesFromForm.password2 === '' ||
+      valuesFromForm.email === '' || valuesFromForm.gender === '' || valuesFromForm.firstname === '' ||
+      valuesFromForm.lastname === '')
+
+    if (anyFieldIsEmpty) {
+      this.errorMessage = "Please fill out all fields."
+      this.showCreateAccountErrorMessage = true
+      return;
+    } else if (passwordDoNotMatch) {
+      this.errorMessage = "Passwords must match."
+      this.showCreateAccountErrorMessage = true
+      return;
+    }
+
+    const registerData: UserRegisterData = {
+      firstname: valuesFromForm.firstname!,
+      lastname: valuesFromForm.lastname!,
+      gender: valuesFromForm.gender!,
+      email: valuesFromForm.email!,
+      password: valuesFromForm.password2!
+    }
+
+    this.service.register(registerData).subscribe(result => {
+      if (result['Message'] === 'There exists an account with the given email!')
+      {
+        this.errorMessage = "There exists an account with the given email!"
+        this.showCreateAccountErrorMessage = true
+      }
+      else {
+        this.showCreateAccountSuccessfulMessage = true
+      }
+    })
 
   }
 

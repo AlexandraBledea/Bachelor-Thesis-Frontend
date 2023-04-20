@@ -12,10 +12,13 @@ import {LoginPanelComponent} from './login-panel/login-panel.component';
 import {Router, RouterModule, Routes} from '@angular/router';
 import {MatCardModule} from "@angular/material/card";
 import {RegisterPanelComponent} from "./register-panel/register-panel.component";
+import {HomeComponent} from "../home/home.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginPanelComponent},
-  {path: 'register', component: RegisterPanelComponent}
+  {path: 'register', component: RegisterPanelComponent},
+  {path: 'home', component: HomeComponent}
+
 ]
 
 @NgModule({

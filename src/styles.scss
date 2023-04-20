@@ -81,42 +81,42 @@ h3 {
     width: 80% !important;
   }
 }
-//
-//.mat-raised-button.mat-green {
-//  background-color: v.$green;
-//}
-//.mat-raised-button.mat-red {
-//  background-color: v.$red;
-//}
-//.mat-button.mat-grey {
-//  color: v.$grey-dark;
-//}
-//.mat-icon.mat-green {
-//  color: v.$green;
-//}
-//.mat-icon.mat-red {
-//  color: v.$red;
-//}
-//.mat-icon.mat-blue {
-//  color: v.$blue;
-//}
-//.mat-raised-button.mat-blue {
-//  background-color: v.$blue;
-//}
-//.mat-icon.mat-blue-bg {
-//  background-color: v.$blue;
-//  color: v.$white;
-//}
-//.mat-icon.mat-green-bg {
-//  background-color: v.$green;
-//  color: v.$white;
-//}
-//.mat-mini-fab.mat-blue-bg {
-//  background-color: v.$blue;
-//}
-//.mat-mini-fab.mat-green-bg {
-//  background-color: v.$green;
-//}
+
+mat-raised-button.mat-green {
+  background-color: v.$green;
+}
+mat-raised-button.mat-red {
+  background-color: v.$red;
+}
+mat-button.mat-grey {
+  color: v.$grey-dark;
+}
+mat-icon.mat-green {
+  color: v.$green;
+}
+.mat-icon.mat-red {
+  color: v.$red;
+}
+.mat-icon.mat-blue {
+  color: v.$blue;
+}
+.mat-raised-button.mat-blue {
+  background-color: v.$blue;
+}
+.mat-icon.mat-blue-bg {
+  background-color: v.$blue;
+  color: v.$white;
+}
+.mat-icon.mat-green-bg {
+  background-color: v.$green;
+  color: v.$white;
+}
+.mat-mini-fab.mat-blue-bg {
+  background-color: v.$blue;
+}
+.mat-mini-fab.mat-green-bg {
+  background-color: v.$green;
+}
 //// TABLE CSS
 //.mat-table {
 //  width: 100%;

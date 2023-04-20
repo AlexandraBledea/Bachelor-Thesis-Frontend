@@ -19,6 +19,8 @@ import {MatButtonModule} from "@angular/material/button";
 import {LoginPanelModule} from "./landing/login-panel.module";
 import { RegisterPanelComponent } from './landing/register-panel/register-panel.component';
 import {RegisterFormComponent} from "./landing/register-panel/register-form/register-form.component";
+import { HomeComponent } from './home/home.component';
+import {AuthenticationInterceptor} from "./service/authentication-interceptor.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,8 @@ import {RegisterFormComponent} from "./landing/register-panel/register-form/regi
     LoginPanelComponent,
     LoginResetFormComponent,
     RegisterPanelComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    HomeComponent
   ],
     imports: [
         BrowserModule,
@@ -42,8 +45,7 @@ import {RegisterFormComponent} from "./landing/register-panel/register-form/regi
         MatButtonModule,
         LoginPanelModule,
     ],
-  providers: [],
-
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

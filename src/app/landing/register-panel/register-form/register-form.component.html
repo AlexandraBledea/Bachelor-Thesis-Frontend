@@ -51,7 +51,7 @@
       </button>
     </mat-form-field>
 
-    <mat-card class="password-hint" *ngIf="showCreateAccountErrorMessage">Please fill out all fields.</mat-card>
+    <mat-card class="password-hint" *ngIf="showCreateAccountErrorMessage">{{errorMessage}}</mat-card>
     <mat-card class="password-hint-green" *ngIf="showCreateAccountSuccessfulMessage">Account created successfully.</mat-card>
 
     <button mat-raised-button color="accent" type="submit" id="form-button">Create account</button>
