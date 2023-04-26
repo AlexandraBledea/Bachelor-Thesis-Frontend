@@ -6,13 +6,14 @@ import {UserLoginData} from "../shared/data-type/UserLoginData";
 import {Observable} from "rxjs";
 import {UserRegisterData} from "../shared/data-type/UserRegisterData";
 import {UserChangePasswordData} from "../shared/data-type/UserChangePasswordData";
+import {Recording} from "../shared/data-type/Recording";
 
 const URL_BASE = "http://127.0.0.1:5000/"
 
 const LOGIN = URL_BASE + "login"
 const REGISTER = URL_BASE + "register"
 const CHANGE_PASSWORD = URL_BASE + "login/change-password"
-
+const GET_PREDICTION = URL_BASE + "get-prediction"
 
 
 @Injectable({
@@ -32,7 +33,9 @@ export class UserService {
     return this.httpClient.put(CHANGE_PASSWORD, newData, {responseType: 'json'});
   }
 
-
+  public sendRecording(recording: Recording): Observable<any>{
+    return this.httpClient.post<any>(GET_PREDICTION, recording);
+  }
 
 
 

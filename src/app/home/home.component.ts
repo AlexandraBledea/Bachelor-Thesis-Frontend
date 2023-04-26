@@ -1,17 +1,51 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
 import {UserService} from "../service/user.service";
-import {Router} from "@angular/router";
+import {Router, Routes} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {AudioRecordingService} from 'app/service/audio-recording.service';
+import {Recording} from "../shared/data-type/Recording";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, OnDestroy {
 
-  constructor(private userService : UserService, private router: Router, private cookieService: CookieService) { }
+  isAudioRecording = false;
+  audioRecordedTime: any;
+  audioBlobUrl: any;
+  audioBlob: any;
+  audioName = "";
+
+  constructor(
+    private ref: ChangeDetectorRef,
+    private audioRecordingService: AudioRecordingService,
+    private sanitizer: DomSanitizer,
+    private cookieService: CookieService,
+    private router: Router,
+    private userService: UserService
+  ) {
+
+    this.audioRecordingService.recordingFailed().subscribe(() => {
+      this.isAudioRecording = false;
+      this.ref.detectChanges();
+    });
+
+    this.audioRecordingService.getRecordedTime().subscribe((time) => {
+      this.audioRecordedTime = time;
+      this.ref.detectChanges();
+    });
+
+    this.audioRecordingService.getRecordedBlob().subscribe((data) => {
+      this.audioBlob = data.blob;
+      this.audioName = data.title;
+      this.audioBlobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
+      this.ref.detectChanges();
+    });
+  }
 
   logout() {
     this.cookieService.delete('Token');
@@ -19,10 +53,70 @@ export class HomeComponent implements OnInit{
     this.router.navigate(['/login']);
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
+
   }
 
-  ngOnDestroy(){
-    this.cookieService.delete('Token');
+  startAudioRecording() {
+    if (!this.isAudioRecording) {
+      this.isAudioRecording = true;
+      this.audioRecordingService.startRecording();
+    }
+  }
+
+  abortAudioRecording() {
+    if (this.isAudioRecording) {
+      this.isAudioRecording = false;
+      this.audioRecordingService.abortRecording();
+    }
+  }
+
+  stopAudioRecording() {
+    if (this.isAudioRecording) {
+      this.audioRecordingService.stopRecording();
+      this.isAudioRecording = false;
+    }
+  }
+
+  clearAudioRecordedData() {
+    this.audioBlobUrl = null;
+  }
+
+  downloadAudioRecordedData() {
+    this._downloadFile(this.audioBlob, 'audio/wav', this.audioName);
+  }
+
+  sendRecording(){
+    this.audioBlob.arrayBuffer().then((buff: Iterable<number>) => {
+        let x = new Uint8Array(buff);
+        const recodingData: Recording = {
+          actualEmotion: "happy",
+          audio: Array.from(x),
+          model: "1"
+        }
+
+        this.userService.sendRecording(recodingData).subscribe(result => {
+          console.log(result)
+        })
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.abortAudioRecording();
+  }
+
+  _downloadFile(data: any, type: string, filename: string): any {
+    const blob = new Blob([data], { type: type });
+    const url = window.URL.createObjectURL(blob);
+    //this.video.srcObject = stream;
+    //const url = data;
+    const anchor = document.createElement('a');
+    anchor.download = filename;
+    anchor.href = url;
+    document.body.appendChild(anchor);
+    anchor.click();
+    document.body.removeChild(anchor);
   }
 }
+
+

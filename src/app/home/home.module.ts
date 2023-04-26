@@ -4,6 +4,7 @@ import {Routes} from "@angular/router";
 import {LoginPanelComponent} from "../landing/login-panel/login-panel.component";
 import {RegisterPanelComponent} from "../landing/register-panel/register-panel.component";
 import {HomeComponent} from "./home.component";
+import { RecordingsTableComponent } from './recordings-table/recordings-table.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent}
@@ -11,7 +12,9 @@ const routes: Routes = [
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    RecordingsTableComponent
+  ],
   imports: [
     CommonModule
   ]
