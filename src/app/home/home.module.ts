@@ -5,6 +5,8 @@ import {LoginPanelComponent} from "../landing/login-panel/login-panel.component"
 import {RegisterPanelComponent} from "../landing/register-panel/register-panel.component";
 import {HomeComponent} from "./home.component";
 import { RecordingsTableComponent } from './recordings-table/recordings-table.component';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import {MatIconModule} from "@angular/material/icon";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent}
@@ -13,10 +15,15 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RecordingsTableComponent
+    RecordingsTableComponent,
+    NavBarComponent
+  ],
+  exports: [
+    NavBarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MatIconModule
   ]
 })
 export class HomeModule { }

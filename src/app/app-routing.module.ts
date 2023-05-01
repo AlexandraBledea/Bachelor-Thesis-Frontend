@@ -6,13 +6,15 @@ import {HomeComponent} from "./home/home.component";
 import {AuthguardService} from "./authguards/authguard.service";
 import {AuthguardLoginService} from "./authguards/authguard-login.service";
 import {AuthguardRegisterService} from "./authguards/authguard-register.service";
+import {ExpertUserComponent} from "./expert-user/expert-user.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: LoginPanelComponent, canActivate:[AuthguardLoginService]},
   // {path: "**", redirectTo: "login"},
   {path: 'register', component: RegisterPanelComponent, canActivate:[AuthguardRegisterService]},
-  {path: 'home', component:HomeComponent, canActivate:[AuthguardService]}
+  {path: 'home', component:HomeComponent, canActivate:[AuthguardService]},
+  {path: 'expert-user', component: ExpertUserComponent, canActivate:[AuthguardService]}
 ];
 
 @NgModule({

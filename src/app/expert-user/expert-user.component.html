@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
 <div id="my-app">
   <div>
-    <div>
+    <div id="buttons-container">
       <button class="start-button" *ngIf="!isAudioRecording && !audioBlobUrl" (click)="startAudioRecording()">Start Audio Recording</button>
       <button class="stop-button" *ngIf="isAudioRecording && !audioBlobUrl" (click)="stopAudioRecording()">Stop Audio Recording</button>
       <button class="cancel-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="clearAudioRecordedData()">Clear Audio Recording</button>

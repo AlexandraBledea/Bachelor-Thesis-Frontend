@@ -21,6 +21,9 @@ import { RegisterPanelComponent } from './landing/register-panel/register-panel.
 import {RegisterFormComponent} from "./landing/register-panel/register-form/register-form.component";
 import { HomeComponent } from './home/home.component';
 import {AuthenticationInterceptor} from "./service/authentication-interceptor.service";
+import {HomeModule} from "./home/home.module";
+import { ExpertUserComponent } from './expert-user/expert-user.component';
+import { SimpleUserComponent } from './simple-user/simple-user.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +32,9 @@ import {AuthenticationInterceptor} from "./service/authentication-interceptor.se
     LoginResetFormComponent,
     RegisterPanelComponent,
     RegisterFormComponent,
-    HomeComponent
+    HomeComponent,
+    ExpertUserComponent,
+    SimpleUserComponent
   ],
     imports: [
         BrowserModule,
@@ -44,6 +49,7 @@ import {AuthenticationInterceptor} from "./service/authentication-interceptor.se
         MatInputModule,
         MatButtonModule,
         LoginPanelModule,
+        HomeModule,
     ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
   bootstrap: [AppComponent]
