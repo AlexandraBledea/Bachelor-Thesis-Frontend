@@ -2,6 +2,7 @@
 .topnav {
   background-color: #333;
   overflow: hidden;
+
 }
 
 /* Style the links inside the navigation bar */
@@ -16,7 +17,7 @@
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ddd;
+  background-color: #b0b0b0;
   color: black;
 }
 
@@ -26,6 +27,15 @@
   color: white;
 }
 
+.topnav{
+  display: flex;
+  justify-content: space-around;
+}
+
 .topnav #log-out {
   float: right;
+}
+
+#expert-user{
+  border-radius: 20px;
 }

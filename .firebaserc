@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "discover-your-emotions"
+  },
+  "targets": {
+    "discover-your-emotions": {
+      "hosting": {
+        "frontend-thesis": [
+          "discover-your-emotions"
+        ]
+      }
+    }
+  }
+}
