@@ -13,7 +13,9 @@ const URL_BASE = "http://127.0.0.1:5000/"
 const LOGIN = URL_BASE + "login"
 const REGISTER = URL_BASE + "register"
 const CHANGE_PASSWORD = URL_BASE + "login/change-password"
-const GET_PREDICTION = URL_BASE + "get-prediction"
+const GET_PREDICTION_EXPERT_USER = URL_BASE + "get-prediction-expert-user"
+const GET_PREDICTION_SIMPLE_USER = URL_BASE + "get-prediction-simple-user"
+const CHECK_CONNECTION = URL_BASE + "check-connection"
 
 
 @Injectable({
@@ -33,10 +35,17 @@ export class UserService {
     return this.httpClient.put(CHANGE_PASSWORD, newData, {responseType: 'json'});
   }
 
-  public sendRecording(recording: Recording): Observable<any>{
-    return this.httpClient.post<any>(GET_PREDICTION, recording);
+  public sendRecordingExpertUser(recording: Recording): Observable<any>{
+    return this.httpClient.post<any>(GET_PREDICTION_EXPERT_USER, recording);
   }
 
+  public sendRecordingSimpleUser(recording: Recording): Observable<any>{
+    return this.httpClient.post<any>(GET_PREDICTION_SIMPLE_USER, recording);
+  }
+
+  public checkConnection(): Observable<any>{
+    return this.httpClient.post<any>(CHECK_CONNECTION, {})
+  }
 
 
 }

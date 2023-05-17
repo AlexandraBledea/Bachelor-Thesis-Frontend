@@ -1,6 +1,9 @@
 <app-nav-bar></app-nav-bar>
 <div id="my-app">
   <div>
+    <mat-card class="predict-hint" *ngIf="showErrorMessage">You should select the actual emotion!</mat-card>
+    <mat-card class="predict-successful-hint" *ngIf="showPredictionMadeSuccessfully">Prediction made successfully!</mat-card>
+    <mat-card class="predict-already-made-hint" *ngIf="showPredictionAlreadyMade">Prediction already made for this audio recording!</mat-card>
     <div id="buttons-container">
       <button class="start-button" *ngIf="!isAudioRecording && !audioBlobUrl" (click)="startAudioRecording()">Start Audio Recording</button>
       <button class="stop-button" *ngIf="isAudioRecording && !audioBlobUrl" (click)="stopAudioRecording()">Stop Audio Recording</button>
@@ -11,6 +14,41 @@
       <audio *ngIf="!isAudioRecording && audioBlobUrl"  controls>
         <source [src]="audioBlobUrl" type="audio/mp3">
       </audio>
+
+
+      <mat-form-field  id="select-emotion-form" *ngIf="isRecorded" appearance="outline">
+        <mat-label id="select-emotion-label">Select an emotion</mat-label>
+        <mat-select id="select-emotion-select" [(value)]="selectedEmotion" (selectionChange)="resetWarnings()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor = "let emotion of emotions" [value]="emotion">
+            {{emotion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button id="predict-button" class="predict-button" *ngIf="!isAudioRecording && audioBlobUrl"  (click)="sendRecording()">Send Audio Recording</button>
+
+      <div class="predict-results-wrapper">
+        <p class="predict-emotion-result" *ngIf="alreadyPredicted">Predicted emotion: {{predictedEmotion}}</p>
+        <p class="predict-emotion-result" *ngIf="alreadyPredicted">Used model: {{usedModel}}</p>
+      </div>
+
+      <div class="statistics-wrapper" *ngIf="alreadyPredicted">
+        <apx-chart class="statistics-chart"
+                   [series]="chartOptions.series"
+                   [chart]="chartOptions.chart"
+                   [dataLabels]="chartOptions.dataLabels"
+                   [plotOptions]="chartOptions.plotOptions"
+                   [yaxis]="chartOptions.yaxis"
+                   [xaxis]="chartOptions.xaxis"
+                   [fill]="chartOptions.fill"
+                   [title]="chartOptions.title"
+        ></apx-chart>
+      </div>
+
     </div>
   </div>
 </div>
+
+<app-predictions-list #predictionsList></app-predictions-list>
+

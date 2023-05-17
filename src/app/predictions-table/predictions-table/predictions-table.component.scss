@@ -1,0 +1,100 @@
+.teamsTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.table-card {
+  width: 100%;
+  max-width: 800px;
+  padding: 20px;
+  overflow-x: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  max-height: 500px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+  word-wrap: break-word;
+
+}
+
+th {
+  font-weight: bold;
+}
+
+.teamName {
+  font-weight: bold;
+}
+
+.edit-cell {
+  font-style: italic;
+}
+
+.delete-cell {
+  text-align: center;
+}
+
+#details-button {
+  padding: 5px 10px;
+  font-size: 14px;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button#details-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#details-button:hover {
+  background-color: #0056b3;
+}
+
+footer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #777;
+}
+
+audio {
+  margin-top: 20px;
+  width: 100%;
+}
+
+
+
+@media screen and (max-width: 500px) {
+  .teamsTable {
+    margin: 10px;
+
+  }
+  .table-card {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 500px;
+  }
+
+  th, td {
+    white-space: nowrap;
+    padding: 5px;
+  }
+}

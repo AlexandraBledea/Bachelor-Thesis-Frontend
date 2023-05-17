@@ -1,16 +1,9 @@
-<app-nav-bar></app-nav-bar>
-<div id="my-app">
-  <div>
-    <div>
-      <button class="start-button" *ngIf="!isAudioRecording && !audioBlobUrl" (click)="startAudioRecording()">Start Audio Recording</button>
-      <button class="stop-button" *ngIf="isAudioRecording && !audioBlobUrl" (click)="stopAudioRecording()">Stop Audio Recording</button>
-      <button class="cancel-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="clearAudioRecordedData()">Clear Audio Recording</button>
-      <button class="download-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="downloadAudioRecordedData()">Download Audio Recording</button>
-      <button class="predict-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="sendRecording()">Send Audio Recording</button>
-      <div id="audioTimer" *ngIf="isAudioRecording && !audioBlobUrl"> {{ audioRecordedTime }} </div>
-      <audio *ngIf="!isAudioRecording && audioBlobUrl"  controls>
-        <source [src]="audioBlobUrl" type="audio/mp3">
-      </audio>
-    </div>
+<div class="container">
+  <div id="home-menu">
+    <button class="home-menu-button" mat-raised-button type="submit" (click)="simpleUser()" color="accent">Simple User
+    </button>
+    <button class="home-menu-button" mat-raised-button type="submit" (click)="expertUser()" color="accent">Expert User
+    </button>
+    <button class="home-menu-button" mat-raised-button type="submit" (click)="logout()" color="accent">Log Out</button>
   </div>
 </div>

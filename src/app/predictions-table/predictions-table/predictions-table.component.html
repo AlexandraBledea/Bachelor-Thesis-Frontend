@@ -1,0 +1,49 @@
+<section class="teamsTable">
+  <mat-card class="table-card">
+    <table mat-table [dataSource]="this.dataSource">
+
+      <ng-container matColumnDef="No.">
+        <th mat-header-cell *matHeaderCellDef>No. </th>
+        <td mat-cell  class="teamName" *matCellDef="let i = index"> {{i + 1}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Model">
+        <th mat-header-cell class="edit-cell" *matHeaderCellDef> Model </th>
+        <td mat-cell class="edit-cell" *matCellDef="let element">{{element.model}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Actual Emotion">
+        <th mat-header-cell class="edit-cell" *matHeaderCellDef> Actual Emotion </th>
+        <td mat-cell class="edit-cell" *matCellDef="let element">{{element.actualEmotion}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Predicted Emotion">
+        <th mat-header-cell class="edit-cell" *matHeaderCellDef> Predicted Emotion </th>
+        <td mat-cell class="edit-cell" *matCellDef="let element">{{element.predictedEmotion}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="See more">
+        <th mat-header-cell class="edit-cell" *matHeaderCellDef> See more </th>
+        <td mat-cell class="delete-cell" *matCellDef="let element" >
+          <button id="details-button" mat-button (click)="displayDetails(element)" >Details</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [length]="100"
+                   [pageSize]="5"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                   aria-label="Select page">
+    </mat-paginator>
+  </mat-card>
+  <footer>
+  </footer>
+
+  <audio *ngIf="detailsPressed"  controls>
+    <source [src]="audioBlobUrl" type="audio/mp3">
+  </audio>
+
+
+</section>

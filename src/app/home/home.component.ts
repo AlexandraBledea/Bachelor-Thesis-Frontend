@@ -12,7 +12,7 @@ import {Recording} from "../shared/data-type/Recording";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit{
 
   isAudioRecording = false;
   audioRecordedTime: any;
@@ -21,35 +21,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   audioName = "";
 
   constructor(
-    private ref: ChangeDetectorRef,
-    private audioRecordingService: AudioRecordingService,
-    private sanitizer: DomSanitizer,
     private cookieService: CookieService,
     private router: Router,
     private userService: UserService
   ) {
-
-    this.audioRecordingService.recordingFailed().subscribe(() => {
-      this.isAudioRecording = false;
-      this.ref.detectChanges();
-    });
-
-    this.audioRecordingService.getRecordedTime().subscribe((time) => {
-      this.audioRecordedTime = time;
-      this.ref.detectChanges();
-    });
-
-    this.audioRecordingService.getRecordedBlob().subscribe((data) => {
-      this.audioBlob = data.blob;
-      this.audioName = data.title;
-      this.audioBlobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
-      this.ref.detectChanges();
-    });
   }
 
   logout() {
     this.cookieService.delete('Token');
-    // document.cookie = 'Token=; expires=Thu, 01-Jan-1970 00:00:01 GMT;';
     this.router.navigate(['/login']);
   }
 
@@ -57,66 +36,14 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   }
 
-  startAudioRecording() {
-    if (!this.isAudioRecording) {
-      this.isAudioRecording = true;
-      this.audioRecordingService.startRecording();
-    }
+  simpleUser() {
+    this.router.navigate(["../simple-user"])
   }
 
-  abortAudioRecording() {
-    if (this.isAudioRecording) {
-      this.isAudioRecording = false;
-      this.audioRecordingService.abortRecording();
-    }
+  expertUser() {
+    this.router.navigate(["../expert-user"])
   }
 
-  stopAudioRecording() {
-    if (this.isAudioRecording) {
-      this.audioRecordingService.stopRecording();
-      this.isAudioRecording = false;
-    }
-  }
-
-  clearAudioRecordedData() {
-    this.audioBlobUrl = null;
-  }
-
-  downloadAudioRecordedData() {
-    this._downloadFile(this.audioBlob, 'audio/wav', this.audioName);
-  }
-
-  sendRecording(){
-    this.audioBlob.arrayBuffer().then((buff: Iterable<number>) => {
-        let x = new Uint8Array(buff);
-        const recodingData: Recording = {
-          actualEmotion: "happy",
-          audio: Array.from(x),
-          model: "1"
-        }
-
-        this.userService.sendRecording(recodingData).subscribe(result => {
-          console.log(result)
-        })
-      });
-  }
-
-  ngOnDestroy(): void {
-    this.abortAudioRecording();
-  }
-
-  _downloadFile(data: any, type: string, filename: string): any {
-    const blob = new Blob([data], { type: type });
-    const url = window.URL.createObjectURL(blob);
-    //this.video.srcObject = stream;
-    //const url = data;
-    const anchor = document.createElement('a');
-    anchor.download = filename;
-    anchor.href = url;
-    document.body.appendChild(anchor);
-    anchor.click();
-    document.body.removeChild(anchor);
-  }
 }
 
 

@@ -1,0 +1,184 @@
+.recordings{
+  display: flex;
+  justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    //max-height: 400px;
+    //overflow-y: auto;
+  text-align: center;
+}
+
+.wrapper-to-wrapper{
+  overflow-y: auto;
+  max-height: 700px;
+  width: 520px;
+}
+
+
+.statistics-prediction{
+  width: 640px;
+  height: 480px;
+}
+
+.statistics-wrapper{
+  width: 700px;
+  height: 400px;
+}
+
+.statistics-chart{
+  pointer-events: none;
+}
+
+
+@media screen and ( max-width: 500px ) {
+  .wrapper-to-wrapper {
+    width: 91vw !important;
+    max-height: 80vh!important;
+  }
+
+  .statistics-prediction{
+    width: 320px;
+    height: 240px;
+  }
+  .statistics-wrapper{
+    width: 320px;
+  }
+
+  .statistics-chart {
+    width: 100%;
+    pointer-events: none;
+    max-width: 320px;
+  }
+
+}
+
+@media screen and ( max-width: 350px ) {
+  .wrapper-to-wrapper {
+    width: 270px !important;
+    max-height: 80vh !important;
+  }
+}
+
+
+//.recordings {
+//  display: flex;
+//  justify-content: center;
+//  padding: 20px;
+//}
+//
+//.wrapper-audio {
+//  max-width: 800px;
+//  margin: 0 auto;
+//  overflow-y: auto;
+//  max-height: 400px; /* Adjust the height as needed */
+//}
+//
+//
+//recordings {
+//  display: flex;
+//  justify-content: center;
+//  padding: 20px;
+//  overflow: hidden; /* Remove horizontal scrollbar */
+//}
+//
+//.wrapper-audio {
+//  width: 100%;
+//  max-width: 800px;
+//  margin: 0 auto;
+//  overflow-y: auto;
+//  max-height: 600px; /* Adjust the height as needed */
+//}
+//
+//.app-prediction-card {
+//  /* Styles for the prediction card */
+//}
+//
+//.app-prediction-card:last-child {
+//  margin-bottom: 0;
+//}
+//
+//
+//.app-prediction-card {
+//  background-color: #f5f5f5;
+//  border-radius: 8px;
+//  padding: 20px;
+//  margin-bottom: 20px;
+//  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+//}
+//
+//.app-prediction-card:last-child {
+//  margin-bottom: 0;
+//}
+//
+//.app-prediction-card h3 {
+//  font-size: 20px;
+//  margin-bottom: 10px;
+//}
+//
+//.app-prediction-card p {
+//  font-size: 16px;
+//  line-height: 1.5;
+//  margin-bottom: 15px;
+//}
+//
+//.app-prediction-card button {
+//  background-color: #4caf50;
+//  color: #fff;
+//  border: none;
+//  padding: 10px 20px;
+//  font-size: 16px;
+//  border-radius: 4px;
+//  cursor: pointer;
+//  transition: background-color 0.3s;
+//}
+//
+//.app-prediction-card button:hover {
+//  background-color: #45a049;
+//}
+//
+//
+//
+////.recordings {
+////  display: flex;
+
+////}
+////
+////
+////
+////.wrapper-audio {
+////  width: 100%;
+////}
+////
+////.wrapper-audio app-prediction-card {
+////  margin-bottom: 20px;
+////}
+////
+////.wrapper-audio app-prediction-card:last-child {
+////  margin-bottom: 0;
+////}
+////
+////h2 {
+////  margin: 0;
+////  margin-bottom: 10px;
+////  font-size: 20px;
+////  font-weight: bold;
+////  text-align: center;
+////}
+////
+/////* Optional: Add some styling to the scroll bar */
+////.recordings::-webkit-scrollbar {
+////  width: 8px;
+////}
+////
+////.recordings::-webkit-scrollbar-track {
+////  background-color: #f5f5f5;
+////}
+////
+////.recordings::-webkit-scrollbar-thumb {
+////  background-color: #888;
+////  border-radius: 4px;
+////}
+////
+////.recordings::-webkit-scrollbar-thumb:hover {
+////  background-color: #555;
+////}

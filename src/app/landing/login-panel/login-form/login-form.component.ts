@@ -56,7 +56,7 @@ export class LoginFormComponent implements OnInit{
           // document.cookie = 'Token=; expires=' + tokenExpirationDate +';';
           // console.log(document.cookie)
           this.cookieService.set('Token', result['token']);
-          this.router.navigate(['/home']);
+          this.router.navigate(['../home']);
         }
       })
     }

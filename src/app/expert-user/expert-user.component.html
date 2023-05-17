@@ -1,16 +1,65 @@
 <app-nav-bar></app-nav-bar>
 <div id="my-app">
   <div>
+    <mat-card class="predict-hint" *ngIf="showErrorMessage">You should select an emotion and a model!</mat-card>
+    <mat-card class="predict-successful-hint" *ngIf="showPredictionMadeSuccessfully">Prediction made successfully!</mat-card>
+    <mat-card class="predict-already-made-hint" *ngIf="showPredictionAlreadyMade">Prediction already made for this audio recording!</mat-card>
     <div id="buttons-container">
       <button class="start-button" *ngIf="!isAudioRecording && !audioBlobUrl" (click)="startAudioRecording()">Start Audio Recording</button>
       <button class="stop-button" *ngIf="isAudioRecording && !audioBlobUrl" (click)="stopAudioRecording()">Stop Audio Recording</button>
       <button class="cancel-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="clearAudioRecordedData()">Clear Audio Recording</button>
       <button class="download-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="downloadAudioRecordedData()">Download Audio Recording</button>
-      <button class="predict-button" *ngIf="!isAudioRecording && audioBlobUrl" (click)="sendRecording()">Send Audio Recording</button>
       <div id="audioTimer" *ngIf="isAudioRecording && !audioBlobUrl"> {{ audioRecordedTime }} </div>
       <audio *ngIf="!isAudioRecording && audioBlobUrl"  controls>
-        <source [src]="audioBlobUrl" type="audio/mp3">
+        <source [src]="audioBlobUrl" type="audio/wav">
       </audio>
+
+
+      <mat-form-field  id="select-emotion-form" *ngIf="isRecorded" appearance="outline">
+        <mat-label id="select-emotion-label">Select an emotion</mat-label>
+        <mat-select id="select-emotion-select" [(value)]="selectedEmotion" (selectionChange)="resetWarnings()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor = "let emotion of emotions" [value]="emotion">
+           {{emotion}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field  id="select-model-form" *ngIf="isRecorded" appearance="outline">
+        <mat-label id="select-model-label">Select a model</mat-label>
+        <mat-select id="select-model-select" [(value)]="selectedModel" (selectionChange)="resetWarnings()">
+          <mat-option>None</mat-option>
+          <mat-option *ngFor = "let model of models" [value]="model">
+            {{model}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button id="predict-button" class="predict-button" *ngIf="!isAudioRecording && audioBlobUrl"  (click)="sendRecording()">Send Audio Recording</button>
+
+      <div class="predict-results-wrapper" *ngIf="alreadyPredicted">
+        <p class="predict-emotion-result" >Predicted emotion: {{predictedEmotion}}</p>
+      </div>
+
+
+      <div class="statistics-wrapper" *ngIf="alreadyPredicted">
+        <apx-chart class="statistics-chart"
+          [series]="chartOptions.series"
+          [chart]="chartOptions.chart"
+          [dataLabels]="chartOptions.dataLabels"
+          [plotOptions]="chartOptions.plotOptions"
+          [yaxis]="chartOptions.yaxis"
+          [xaxis]="chartOptions.xaxis"
+          [fill]="chartOptions.fill"
+          [title]="chartOptions.title"
+        ></apx-chart>
+      </div>
+
     </div>
   </div>
 </div>
+
+
+<app-predictions-list #predictionsList></app-predictions-list>
+

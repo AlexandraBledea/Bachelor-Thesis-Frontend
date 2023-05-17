@@ -1,0 +1,49 @@
+<section class="recordings">
+  <div class="wrapper-to-wrapper">
+    <div class="wrapper-audio">
+
+    <app-prediction-card (customEvent)="onCustomEvent(recording)"
+      *ngFor = "let recording of recordings; let i = index"
+      [recording]=recording
+      [index]="i + 1">
+    </app-prediction-card>
+
+  </div>
+  </div>
+
+  <div class="predict-results-wrapper" *ngIf="isClicked">
+    <audio  controls>
+      <source [src]="audioUrl" type="audio/wav">
+    </audio>
+  </div>
+  <div class="statistics-wrapper" *ngIf="isClicked">
+    <apx-chart class="statistics-chart"
+               [series]="chartOptions.series"
+               [chart]="chartOptions.chart"
+               [dataLabels]="chartOptions.dataLabels"
+               [plotOptions]="chartOptions.plotOptions"
+               [yaxis]="chartOptions.yaxis"
+               [xaxis]="chartOptions.xaxis"
+               [fill]="chartOptions.fill"
+               [title]="chartOptions.title"
+    ></apx-chart>
+  </div>
+
+</section>
+
+
+
+
+<!--<section class="recordings">-->
+<!--  <div class="wrapper-to-wrapper">-->
+<!--    <div class="wrapper-audio">-->
+<!--      <app-prediction-card>-->
+
+<!--      </app-prediction-card>-->
+<!--&lt;!&ndash;      <app-prediction-card></app-prediction-card>&ndash;&gt;-->
+<!--&lt;!&ndash;      <app-prediction-card></app-prediction-card>&ndash;&gt;-->
+<!--&lt;!&ndash;      <app-prediction-card></app-prediction-card>&ndash;&gt;-->
+<!--&lt;!&ndash;      <app-prediction-card></app-prediction-card>&ndash;&gt;-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->

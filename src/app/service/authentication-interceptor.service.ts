@@ -34,7 +34,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       // }
 
       // console.log(request.url)
-      const headers: any = {"token": jwt};
+      const headers: any = {"Authorization": `Bearer ${jwt}`};
       request = request.clone({setHeaders: headers});
     }
     return next.handle(request);

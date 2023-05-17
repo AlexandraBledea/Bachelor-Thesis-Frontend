@@ -7,15 +7,28 @@ import {AuthguardService} from "./authguards/authguard.service";
 import {AuthguardLoginService} from "./authguards/authguard-login.service";
 import {AuthguardRegisterService} from "./authguards/authguard-register.service";
 import {ExpertUserComponent} from "./expert-user/expert-user.component";
+import {SimpleUserComponent} from "./simple-user/simple-user.component";
 
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
-  {path: 'login', component: LoginPanelComponent, canActivate:[AuthguardLoginService]},
+  {path: 'login', component: LoginPanelComponent},
   // {path: "**", redirectTo: "login"},
-  {path: 'register', component: RegisterPanelComponent, canActivate:[AuthguardRegisterService]},
-  {path: 'home', component:HomeComponent, canActivate:[AuthguardService]},
-  {path: 'expert-user', component: ExpertUserComponent, canActivate:[AuthguardService]}
+  {path: 'home', component: HomeComponent},
+  {path: 'register', component: RegisterPanelComponent},
+  {path: 'simple-user', component:SimpleUserComponent},
+  {path: 'expert-user', component: ExpertUserComponent}
 ];
+
+// const routes: Routes = [
+//   {path: '', redirectTo: 'login', pathMatch: 'full'},
+//   {path: 'login', component: LoginPanelComponent, canActivate:[AuthguardLoginService]},
+//   // {path: "**", redirectTo: "login"},
+//   {path: 'home', component: HomeComponent, canActivate:[AuthguardService]},
+//   {path: 'register', component: RegisterPanelComponent, canActivate:[AuthguardRegisterService]},
+//   {path: 'simple-user', component:SimpleUserComponent, canActivate:[AuthguardService]},
+//   {path: 'expert-user', component: ExpertUserComponent, canActivate:[AuthguardService]}
+// ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

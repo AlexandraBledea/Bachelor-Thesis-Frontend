@@ -39,7 +39,7 @@ $thesis-theme: mat.define-light-theme((
 @import "@angular/material/prebuilt-themes/indigo-pink.css";
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
-body { margin: 0; background-color: v.$grey; font-family: Roboto, "Helvetica Neue", sans-serif !important; }
+body { margin: 0; background-color: #edddd4; font-family: Roboto, "Helvetica Neue", sans-serif !important; }
 //
 .mat-mdc-raised-button{
   box-shadow: none !important;

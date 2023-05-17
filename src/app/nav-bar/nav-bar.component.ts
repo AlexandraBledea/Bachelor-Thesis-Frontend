@@ -14,24 +14,20 @@ export class NavBarComponent {
   }
 
   simpleUser() {
-    let simpleUserElement = document.getElementById('simple-user') as HTMLElement;
-    let expertUserElement = document.getElementById('expert-user') as HTMLElement;
-    simpleUserElement.className = 'active';
-    expertUserElement.className = '';
-
+    this.router.navigate(['../simple-user']);
   }
 
   logoutUser() {
     this.cookieService.delete('Token');
-    // document.cookie = 'Token=; expires=Thu, 01-Jan-1970 00:00:01 GMT;';
     this.router.navigate(['/login']);
+    localStorage.removeItem('recordings')
   }
 
   expertUser() {
-    let simpleUserElement = document.getElementById('simple-user') as HTMLElement;
-    let expertUserElement = document.getElementById('expert-user') as HTMLElement;
-    simpleUserElement.className = '';
-    expertUserElement.className = 'active';
-    this.router.navigate(['/expert-user']);
+    this.router.navigate(['../expert-user'])
+  }
+
+  home() {
+    this.router.navigate(['../home'])
   }
 }

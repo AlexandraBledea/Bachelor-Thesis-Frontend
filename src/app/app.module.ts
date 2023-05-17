@@ -24,6 +24,13 @@ import {AuthenticationInterceptor} from "./service/authentication-interceptor.se
 import {HomeModule} from "./home/home.module";
 import { ExpertUserComponent } from './expert-user/expert-user.component';
 import { SimpleUserComponent } from './simple-user/simple-user.component';
+import {MatSelectModule} from "@angular/material/select";
+import { PredictionsTableComponent } from './predictions-table/predictions-table/predictions-table.component';
+import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
+import { PredictionsListComponent } from './predictions-list/predictions-list.component';
+import { PredictionCardComponent } from './predictions-list/prediction-card/prediction-card.component';
+import {NgApexchartsModule} from "ng-apexcharts";
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +41,10 @@ import { SimpleUserComponent } from './simple-user/simple-user.component';
     RegisterFormComponent,
     HomeComponent,
     ExpertUserComponent,
-    SimpleUserComponent
+    SimpleUserComponent,
+    PredictionsTableComponent,
+    PredictionsListComponent,
+    PredictionCardComponent
   ],
     imports: [
         BrowserModule,
@@ -50,6 +60,10 @@ import { SimpleUserComponent } from './simple-user/simple-user.component';
         MatButtonModule,
         LoginPanelModule,
         HomeModule,
+        MatSelectModule,
+        MatTableModule,
+        MatPaginatorModule,
+        NgApexchartsModule,
     ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
   bootstrap: [AppComponent]

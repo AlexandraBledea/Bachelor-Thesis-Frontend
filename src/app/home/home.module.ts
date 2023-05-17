@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {Routes} from "@angular/router";
-import {LoginPanelComponent} from "../landing/login-panel/login-panel.component";
-import {RegisterPanelComponent} from "../landing/register-panel/register-panel.component";
 import {HomeComponent} from "./home.component";
-import { RecordingsTableComponent } from './recordings-table/recordings-table.component';
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import {MatIconModule} from "@angular/material/icon";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatMenuModule} from "@angular/material/menu";
+import {MatButtonModule} from "@angular/material/button";
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent}
@@ -15,7 +15,6 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    RecordingsTableComponent,
     NavBarComponent
   ],
   exports: [
@@ -23,7 +22,10 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    MatIconModule
+    MatIconModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule
   ]
 })
 export class HomeModule { }

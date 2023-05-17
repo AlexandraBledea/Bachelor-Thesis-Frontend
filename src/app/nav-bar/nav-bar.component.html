@@ -1,5 +1,52 @@
-<nav class="topnav">
-  <a class="active" id="simple-user" (click)="simpleUser()">Simple User</a>
-  <a id="expert-user" (click)="expertUser()">Expert User</a>
-  <a id="log-out" (click)="logoutUser()">Log Out</a>
-</nav>
+<mat-toolbar class="topnav">
+  <div class="nav-button-container">
+    <button id="home" (click)="home()" mat-fab color="primary" aria-label="Home icon button">
+      <mat-icon id="home-icon">home</mat-icon>
+    </button>
+  </div>
+  <div class="nav-button-container">
+    <button id="log-out" (click)="logoutUser()" mat-fab color="primary" aria-label="Logout icon button">
+      <mat-icon id="log-out-icon">logout</mat-icon>
+    </button>
+  </div>
+<!--  <a id="home" (click)="home()"><mat-icon id="home-icon" aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon></a>-->
+<!--  <a id="log-out" (click)="logoutUser()"><mat-icon id="log-out-icon" matPrefix id="nav-bar-logout">logout</mat-icon></a>-->
+</mat-toolbar>
+
+<!--<mat-menu #appMenu="matMenu" class="topnav">-->
+<!--  <button id="home" mat-menu-item (click)="home()">Home</button>-->
+<!--  <button class="active" id="simple-user" mat-menu-item (click)="simpleUser()">Simple User</button>-->
+<!--  <button id="expert-user" mat-menu-item (click)="expertUser()">Expert User</button>-->
+<!--  <button id="log-out" mat-menu-item (click)="logoutUser()">Log Out</button>-->
+<!--</mat-menu>-->
+
+
+<!--<button mat-icon-button [matMenuTriggerFor]="appMenu">-->
+<!--  <mat-icon>more_vert</mat-icon>-->
+<!--</button>-->
+
+
+<!--<section>-->
+<!--  <div class="example-label">FAB</div>-->
+<!--  <div class="example-button-row">-->
+<!--    <div class="example-flex-container">-->
+
+<!--      <div class="example-button-container">-->
+<!--        <button mat-fab color="accent" aria-label="Example icon button with a bookmark icon">-->
+<!--          <mat-icon>bookmark</mat-icon>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="example-button-container">-->
+<!--        <button mat-fab color="warn" aria-label="Example icon button with a home icon">-->
+<!--          <mat-icon>home</mat-icon>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--      <div class="example-button-container">-->
+<!--        <button mat-fab disabled aria-label="Example icon button with a heart icon">-->
+<!--          <mat-icon>favorite</mat-icon>-->
+<!--        </button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</section>-->
+<!--<mat-divider></mat-divider>-->

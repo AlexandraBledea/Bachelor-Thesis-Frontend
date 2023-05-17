@@ -1,11 +1,17 @@
 {
   "hosting": [
     {
-      "public": "dist/frontend-thesis",
+      "public": "dict/frontend-thesis",
       "ignore": [
         "firebase.json",
         "**/.*",
         "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
       ]
     },
     {
