@@ -38,7 +38,9 @@ export class ExpertUserComponent implements OnInit, OnDestroy {
   isRecorded = false;
   selectedEmotion: any;
   selectedModel: any;
-  models: string[] = ['English Ravdess', 'English Tess']
+  models: string[] = ['Ravdess Multi Time Steps', 'Ravdess Spectral Axis', 'Ravdess Repetition Based',
+                      'Alexandra Multi Time Steps', 'Alexandra Spectral Axis', 'Alexandra Repetition Based',
+                      'Ravdess Extended Repetition Based']
   emotions: string[] = ['Anger', 'Happiness', 'Sadness', 'Fear', 'Surprised', 'Disgust']
   alreadyPredicted = false;
   usedModels: string[] = []

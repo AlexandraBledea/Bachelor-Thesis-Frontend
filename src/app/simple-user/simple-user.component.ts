@@ -23,7 +23,7 @@ export class SimpleUserComponent implements OnInit, OnDestroy{
   audioName = "";
   isRecorded = false;
   selectedEmotion: any;
-  emotions: string[] = ['Anger', 'Happiness', 'Sadness', 'Fear', 'Surprised', 'Disgusted']
+  emotions: string[] = ['Anger', 'Happiness', 'Sadness', 'Fear', 'Surprised', 'Disgust']
   alreadyPredicted = false;
   @ViewChild('predictionsList') predictionsList!: PredictionsListComponent;
   showErrorMessage = false;
