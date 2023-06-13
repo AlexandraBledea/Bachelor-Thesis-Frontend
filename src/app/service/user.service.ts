@@ -13,7 +13,6 @@ const REGISTER = URL_BASE + "register"
 const CHANGE_PASSWORD = URL_BASE + "login/change-password"
 const GET_PREDICTION_EXPERT_USER = URL_BASE + "get-prediction-expert-user"
 const GET_PREDICTION_SIMPLE_USER = URL_BASE + "get-prediction-simple-user"
-const CHECK_CONNECTION = URL_BASE + "check-connection"
 const GET_RECORDINGS = URL_BASE + "recordings"
 
 
@@ -43,10 +42,6 @@ export class UserService {
 
   public sendRecordingSimpleUser(recording: Recording): Observable<any>{
     return this.httpClient.post<any>(GET_PREDICTION_SIMPLE_USER, recording);
-  }
-
-  public checkConnection(): Observable<any>{
-    return this.httpClient.post<any>(CHECK_CONNECTION, {})
   }
 
   public getPredictedRecordings(): Observable<Recording[]>

@@ -16,6 +16,7 @@ export class PredictionsListComponent implements OnInit{
   isClicked = false;
   number = 0;
   chartOptions: any;
+  exists = false;
 
 
 constructor(private userService: UserService, private changeDetectorRef: ChangeDetectorRef) {
@@ -38,9 +39,17 @@ constructor(private userService: UserService, private changeDetectorRef: ChangeD
   }
 
   onCustomEvent(data: Recording) {
+    console.log(data.statistics!)
+    if(Array.isArray(data.statistics) && data.statistics.length === 0) {
+      this.exists = false
+      this.convertToAudio(data.audio!)
+      this.isClicked = true
+      return;
+    }
     this.createChart(Object.keys(data.statistics!), Object.values(data.statistics!))
     this.convertToAudio(data.audio!)
-    this.isClicked = true;
+    this.isClicked = true
+    this.exists = true
   }
 
   createChart(labels: string[], percentages: number[]){

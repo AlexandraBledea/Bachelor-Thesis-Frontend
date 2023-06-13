@@ -15,7 +15,7 @@
     <audio controls [src]="audioUrl" type="audio/wav"></audio>
   </div>
 
-  <div class="statistics-wrapper" *ngIf="isClicked">
+  <div class="statistics-wrapper" *ngIf="isClicked && exists">
     <apx-chart class="statistics-chart"
                [series]="chartOptions.series"
                [chart]="chartOptions.chart"

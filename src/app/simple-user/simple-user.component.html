@@ -32,19 +32,6 @@
         <p class="predict-emotion-result" *ngIf="alreadyPredicted">Used model: {{usedModel}}</p>
       </div>
 
-      <div class="statistics-wrapper" *ngIf="alreadyPredicted">
-        <apx-chart class="statistics-chart"
-                   [series]="chartOptions.series"
-                   [chart]="chartOptions.chart"
-                   [dataLabels]="chartOptions.dataLabels"
-                   [plotOptions]="chartOptions.plotOptions"
-                   [yaxis]="chartOptions.yaxis"
-                   [xaxis]="chartOptions.xaxis"
-                   [fill]="chartOptions.fill"
-                   [title]="chartOptions.title"
-        ></apx-chart>
-      </div>
-
     </div>
   </div>
 </div>

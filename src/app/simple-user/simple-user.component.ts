@@ -68,7 +68,6 @@ export class SimpleUserComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit() {
-    this.checkConnection()
   }
 
   startAudioRecording() {
@@ -109,8 +108,6 @@ export class SimpleUserComponent implements OnInit, OnDestroy{
 
   sendRecording(){
 
-    this.checkConnection()
-
     if (this.alreadyPredicted) {
 
       this.showPredictionAlreadyMade = true;
@@ -136,21 +133,7 @@ export class SimpleUserComponent implements OnInit, OnDestroy{
         actualEmotion: this.selectedEmotion,
         audio: Array.from(x)
       }
-      this.userService.sendRecordingSimpleUser(recodingData).pipe(catchError(error => {
-          if (error.status === 401) {
-            // Handle the UNAUTHORIZED error here
-            // For example, you can redirect to a login page or display an error message
-            console.log('UNAUTHORIZED error occurred');
-
-            this.cookieService.delete('Token');
-            // document.cookie = 'Token=; expires=Thu, 01-Jan-1970 00:00:01 GMT;';
-            this.router.navigate(['/login']);
-          }
-
-          // Rethrow the error to propagate it to the subscriber
-          return throwError(error);
-        })
-      ).subscribe(result => {
+      this.userService.sendRecordingSimpleUser(recodingData).subscribe(result => {
         this.predictionsList.addPredictionRecording(result)
 
         this.alreadyPredicted = true;
@@ -163,142 +146,14 @@ export class SimpleUserComponent implements OnInit, OnDestroy{
         this.predictedEmotion = result.predictedEmotion
         this.usedModel = result.model
 
-        this.createChart(Object.keys(result.statistics), Object.values(result.statistics))
-
       })
     });
   }
-
-  createChart(labels: string[], percentages: number[]){
-    this.chartOptions = {
-      series: [
-        {
-          name: "Emotion",
-          data: percentages
-        }
-      ],
-      chart: {
-        height: 350,
-        type: "bar",
-        background: "#F5F5F5"
-      },
-      plotOptions: {
-        bar: {
-          dataLabels: {
-            position: "top", // top, center, bottom,
-          },
-        }
-      },
-      dataLabels: {
-        enabled: true,
-        formatter: function(val: string) {
-          return val + "%";
-        },
-        offsetY: 10,
-        style: {
-          fontSize: "12px",
-          colors: ["#444444"]
-        }
-      },
-
-      xaxis: {
-        categories: labels,
-        position: "top",
-        labels: {
-          offsetY: -18
-        },
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        crosshairs: {
-          fill: {
-            type: "gradient",
-            gradient: {
-              colorFrom: "#D8E3F0",
-              colorTo: "#BED1E6",
-              stops: [0, 100],
-              opacityFrom: 0.4,
-              opacityTo: 0.5
-            }
-          }
-        },
-        tooltip: {
-          enabled: false,
-          offsetY: -35
-        }
-      },
-      fill: {
-        type: "gradient",
-        gradient: {
-          shade: "light",
-          type: "horizontal",
-          shadeIntensity: 0.25,
-          gradientToColors: ["#DAB8F3"],
-          inverseColors: true,
-          opacityFrom: 1,
-          opacityTo: 1,
-          stops: [50, 0, 100, 100]
-        },
-        colors: ["#D89CF6"]
-      },
-      yaxis: {
-        axisBorder: {
-          show: false
-        },
-        axisTicks: {
-          show: false
-        },
-        labels: {
-          show: false,
-          formatter: function(val: string) {
-            return val + "%";
-          }
-        },
-        style: {
-          paddingTop: "10px"
-        }
-      },
-      title: {
-        text: "Emotion Recongition probabilities",
-        floating: 0,
-        offsetY: 330,
-        align: "center",
-        style: {
-          color: "#444"
-        }
-      }
-    };
-  }
-
-
 
   ngOnDestroy(): void {
     this.abortAudioRecording();
   }
 
-
-  checkConnection(){
-    this.userService.checkConnection().pipe(catchError(error => {
-        if (error.status === 401) {
-          // Handle the UNAUTHORIZED error here
-          // For example, you can redirect to a login page or display an error message
-          console.log('UNAUTHORIZED error occurred');
-
-          this.cookieService.delete('Token');
-          // document.cookie = 'Token=; expires=Thu, 01-Jan-1970 00:00:01 GMT;';
-          this.router.navigate(['/login']);
-        }
-
-        // Rethrow the error to propagate it to the subscriber
-        return throwError(error);
-      })
-    ).subscribe(result => {
-      return;
-    })
-  }
 
   _downloadFile(data: any, type: string, filename: string): any {
     const blob = new Blob([data], { type: type });
