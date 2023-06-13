@@ -368,7 +368,4 @@ export class ExpertUserComponent implements OnInit, OnDestroy {
     this.showErrorMessage = false;
   }
 
-  doNothing() {
-
-  }
 }

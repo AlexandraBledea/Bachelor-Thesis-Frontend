@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {CookieService} from 'ngx-cookie-service';
@@ -36,25 +36,11 @@ export class LoginFormComponent implements OnInit{
       password: valuesFromForm.password!
     }
 
-    console.log(loginData.email + " " + loginData.password)
     if(!this.loginUserDataFormGroup.invalid){
       this.userService.login(loginData).subscribe(result => {
-        //TODO - to be deleted later
-        console.log("Result: " )
-        console.log(result)
 
         if(result['token'] == '') this.showPasswordErrorMessage = true;
         else {
-          //
-          // const tokenExpirationString = "2023-04-20 17:43:03.462114";
-          // const [year, month, day, hour, minute, second, millisecond] = tokenExpirationString.split(/[- :.]/);
-          //
-          // console.log(hour)
-          // const tokenExpirationDate = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day), Number(hour), Number(minute), Number(second), Number(millisecond)));
-          //
-          //
-          // document.cookie = 'Token=; expires=' + tokenExpirationDate +';';
-          // console.log(document.cookie)
           this.cookieService.set('Token', result['token']);
           this.router.navigate(['../home']);
         }

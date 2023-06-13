@@ -13,16 +13,6 @@ export class AuthguardLoginService  implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = this.cookieService.get("Token")
 
-    // const jwt = parseJwt(token)
-    // const expirationString = jwt.expiration;
-    // const expirationDate = new Date(expirationString.replace(' ', 'T') + 'Z');
-    //
-    //
-    //
-    // console.log(tokenExpirationDate)
-    // console.log(expirationDate);
-    // console.log(jwt.expiration)
-    // console.log(token)
     if(token === "undefined" || token == '') {
       return true;
     }else{

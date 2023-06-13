@@ -61,8 +61,6 @@ export class RegisterFormComponent {
     }
 
     this.service.register(registerData).subscribe(result => {
-      console.log(result)
-      console.log(result["Message"])
       if (result['Message'] === 'There exists an account with the given email!')
       {
         this.errorMessage = "There exists an account with the given email!"

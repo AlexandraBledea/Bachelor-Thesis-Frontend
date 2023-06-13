@@ -31,6 +31,7 @@ import {MatPaginatorModule} from "@angular/material/paginator";
 import { PredictionsListComponent } from './predictions-list/predictions-list.component';
 import { PredictionCardComponent } from './predictions-list/prediction-card/prediction-card.component';
 import {NgApexchartsModule} from "ng-apexcharts";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,6 +65,7 @@ import {NgApexchartsModule} from "ng-apexcharts";
         MatTableModule,
         MatPaginatorModule,
         NgApexchartsModule,
+        MatCheckboxModule,
     ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
   bootstrap: [AppComponent]
