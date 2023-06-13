@@ -30,6 +30,7 @@ import { PredictionsListComponent } from './predictions-list/predictions-list.co
 import { PredictionCardComponent } from './predictions-list/prediction-card/prediction-card.component';
 import {NgApexchartsModule} from "ng-apexcharts";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {ErrorInterceptor} from "./service/error-interceptor.service";
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         NgApexchartsModule,
         MatCheckboxModule,
     ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+              {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
