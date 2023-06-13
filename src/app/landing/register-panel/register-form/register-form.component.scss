@@ -13,6 +13,14 @@
   margin-right: 8px;
 }
 
+.check-box {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+
 ::ng-deep mat-form-field {
   width: 320px;
 }

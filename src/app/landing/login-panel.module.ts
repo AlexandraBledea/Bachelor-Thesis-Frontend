@@ -13,16 +13,19 @@ import {Routes} from '@angular/router';
 import {MatCardModule} from "@angular/material/card";
 import {RegisterPanelComponent} from "./register-panel/register-panel.component";
 import {HomeComponent} from "../home/home.component";
+import { TermsConditionsComponent } from './terms-conditions/terms-conditions.component';
 
 const routes: Routes = [
   {path: 'login', component: LoginPanelComponent},
   {path: 'register', component: RegisterPanelComponent},
-  {path: 'home', component: HomeComponent}
+  {path: 'home', component: HomeComponent},
+  {path: 'terms-and-conditions', component: TermsConditionsComponent}
 
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     MatButtonModule,
     MatSelectModule,

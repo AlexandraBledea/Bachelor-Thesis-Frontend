@@ -17,6 +17,9 @@ export class LoginPanelComponent implements OnInit{
 
   goToRegister() {
     this.router.navigate(['/register'])
+  }
 
+  goToTermsAndConditions(){
+    this.router.navigate(['/terms-and-conditions'])
   }
 }

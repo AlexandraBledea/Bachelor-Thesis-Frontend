@@ -1,0 +1,23 @@
+.container {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+
+h1, h2 {
+  margin-top: 20px;
+}
+
+a {
+  color: #1e90ff;
+}
+#form-button, #form-button-register{
+  margin-top: 26px;
+}
+
+a:hover {
+  text-decoration: underline;
+}

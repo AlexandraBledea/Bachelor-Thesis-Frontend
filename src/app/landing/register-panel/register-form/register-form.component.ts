@@ -3,6 +3,7 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {UserRegisterData} from "../../../shared/data-type/UserRegisterData";
 import {UserService} from "../../../service/user.service";
+import {MatCheckboxChange} from "@angular/material/checkbox";
 
 @Component({
   selector: 'app-register-form',
@@ -27,6 +28,7 @@ export class RegisterFormComponent {
     password1: ["", Validators.required],
     password2: ["", Validators.required],
   })
+  isChecked = false;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private service: UserService) {
   }
@@ -42,7 +44,11 @@ export class RegisterFormComponent {
       valuesFromForm.email === '' || valuesFromForm.gender === '' || valuesFromForm.firstname === '' ||
       valuesFromForm.lastname === '')
 
-    if (anyFieldIsEmpty) {
+    if(!this.isChecked){
+      this.errorMessage = "You must agree with the terms and conditions in order to create an account!"
+      this.showCreateAccountErrorMessage = true
+      return;
+    } else if (anyFieldIsEmpty) {
       this.errorMessage = "Please fill out all fields."
       this.showCreateAccountErrorMessage = true
       return;
@@ -78,4 +84,7 @@ export class RegisterFormComponent {
     this.showCreateAccountSuccessfulMessage = false;
   }
 
+  onChange($event: MatCheckboxChange) {
+    this.isChecked = $event.checked
+  }
 }

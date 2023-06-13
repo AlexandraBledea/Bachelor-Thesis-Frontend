@@ -10,7 +10,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { LoginPanelComponent } from './landing/login-panel/login-panel.component';
 import { LoginResetFormComponent } from './landing/login-panel/login-reset-form/login-reset-form.component';
 import {MatInputModule} from "@angular/material/input";
@@ -31,6 +31,7 @@ import { PredictionCardComponent } from './predictions-list/prediction-card/pred
 import {NgApexchartsModule} from "ng-apexcharts";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ErrorInterceptor} from "./service/error-interceptor.service";
+import {TermsConditionsComponent} from "./landing/terms-conditions/terms-conditions.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,28 +44,30 @@ import {ErrorInterceptor} from "./service/error-interceptor.service";
     ExpertUserComponent,
     SimpleUserComponent,
     PredictionsListComponent,
-    PredictionCardComponent
+    PredictionCardComponent,
+    TermsConditionsComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatSlideToggleModule,
-        MatCardModule,
-        MatFormFieldModule,
-        MatIconModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatButtonModule,
-        LoginPanelModule,
-        HomeModule,
-        MatSelectModule,
-        MatTableModule,
-        MatPaginatorModule,
-        NgApexchartsModule,
-        MatCheckboxModule,
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatIconModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatButtonModule,
+    LoginPanelModule,
+    HomeModule,
+    MatSelectModule,
+    MatTableModule,
+    MatPaginatorModule,
+    NgApexchartsModule,
+    MatCheckboxModule,
+    FormsModule,
+  ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
               {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true}],
   bootstrap: [AppComponent]

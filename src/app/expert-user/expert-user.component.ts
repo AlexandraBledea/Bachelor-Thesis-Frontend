@@ -298,26 +298,6 @@ export class ExpertUserComponent implements OnInit, OnDestroy {
     };
   }
 
-  checkConnection() {
-    this.userService.checkConnection().pipe(catchError(error => {
-        if (error.status === 401) {
-          // Handle the UNAUTHORIZED error here
-          // For example, you can redirect to a login page or display an error message
-          console.log('UNAUTHORIZED error occurred');
-
-          this.cookieService.delete('Token');
-          // document.cookie = 'Token=; expires=Thu, 01-Jan-1970 00:00:01 GMT;';
-          this.router.navigate(['/login']);
-        }
-
-        // Rethrow the error to propagate it to the subscriber
-        return throwError(error);
-      })
-    ).subscribe(result => {
-      return;
-    })
-  }
-
 
   ngOnDestroy(): void {
     this.abortAudioRecording();
