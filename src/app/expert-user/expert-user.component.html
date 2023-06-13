@@ -30,7 +30,7 @@
         <mat-label id="select-model-label">Select a model</mat-label>
         <mat-select id="select-model-select" [(value)]="selectedModel" (selectionChange)="resetWarnings()">
           <mat-option>None</mat-option>
-          <mat-option *ngFor = "let model of models" [value]="model">
+          <mat-option style="text-align: left" *ngFor = "let model of models" [value]="model">
             {{model}}
           </mat-option>
         </mat-select>
