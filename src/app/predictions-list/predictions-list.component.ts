@@ -1,25 +1,10 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {Recording} from "../shared/data-type/Recording";
-import {PredictionsService} from "../service/predictions.service";
-import {parseJwt} from "../utils/JWTParser";
-import {MatTableDataSource} from "@angular/material/table";
 import {CookieService} from "ngx-cookie-service";
 import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import {Router} from "@angular/router";
 import {UserService} from "../service/user.service";
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexPlotOptions,
-  ApexYAxis,
-  ApexTitleSubtitle,
-  ApexXAxis,
-  ApexFill
-} from "ng-apexcharts";
-
 
 
 @Component({
@@ -37,7 +22,7 @@ export class PredictionsListComponent implements OnInit{
   chartOptions: any;
 
 
-constructor(private userService: UserService, private changeDetectorRef: ChangeDetectorRef, private predictionService: PredictionsService, private cookieService: CookieService, private router: Router) {
+constructor(private userService: UserService, private changeDetectorRef: ChangeDetectorRef, private cookieService: CookieService, private router: Router) {
   }
 
 
@@ -49,10 +34,7 @@ constructor(private userService: UserService, private changeDetectorRef: ChangeD
   getPredictedRecordings() {
     this.checkConnection()
 
-    let token = this.cookieService.get('Token')
-    let email = parseJwt(token).sub
-
-    this.predictionService.getPredictedRecordings(email).pipe(
+    this.userService.getPredictedRecordings().pipe(
       catchError(error => {
         if (error.status === 401) {
           // Handle the UNAUTHORIZED error here
@@ -79,7 +61,6 @@ constructor(private userService: UserService, private changeDetectorRef: ChangeD
 
   onCustomEvent(data: Recording) {
     this.checkConnection()
-    // this.convertToImage(data.statistics!)
     this.createChart(Object.keys(data.statistics!), Object.values(data.statistics!))
     this.convertToAudio(data.audio!)
     this.isClicked = true;
@@ -187,13 +168,6 @@ constructor(private userService: UserService, private changeDetectorRef: ChangeD
         }
       }
     };
-  }
-
-
-  convertToImage(statistics: number[]) {
-    const bytes = new Uint8Array(statistics);
-    let blob = new Blob([bytes], {type: 'image/png'});
-    this.imageUrl = URL.createObjectURL(blob);
   }
 
   convertToAudio(audio: number[]){

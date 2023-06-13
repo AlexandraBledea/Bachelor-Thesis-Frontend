@@ -64,8 +64,6 @@ export class AudioRecordingService {
       desiredSampRate: 48000
     });
 
-
-
     this.recorder.record();
     this.startTime = moment();
     this.interval = setInterval(

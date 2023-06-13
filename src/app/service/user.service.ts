@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import {parseJwt} from "../utils/JWTParser";
-import {CookieService} from "ngx-cookie-service";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {UserLoginData} from "../shared/data-type/UserLoginData";
 import {Observable} from "rxjs";
 import {UserRegisterData} from "../shared/data-type/UserRegisterData";
@@ -16,6 +14,8 @@ const CHANGE_PASSWORD = URL_BASE + "login/change-password"
 const GET_PREDICTION_EXPERT_USER = URL_BASE + "get-prediction-expert-user"
 const GET_PREDICTION_SIMPLE_USER = URL_BASE + "get-prediction-simple-user"
 const CHECK_CONNECTION = URL_BASE + "check-connection"
+const GET_RECORDINGS = URL_BASE + "recordings"
+
 
 
 @Injectable({
@@ -23,14 +23,16 @@ const CHECK_CONNECTION = URL_BASE + "check-connection"
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient, private cookieService: CookieService) { }
+  constructor(private httpClient: HttpClient) { }
 
   public login(loginData: UserLoginData): Observable<any>{
     return this.httpClient.post<any>(LOGIN,loginData);
   }
+
   public register(registerData: UserRegisterData): Observable<any> {
     return this.httpClient.post<any>(REGISTER, registerData);
   }
+
   public changePassword(newData: UserChangePasswordData): Observable<any>{
     return this.httpClient.put(CHANGE_PASSWORD, newData, {responseType: 'json'});
   }
@@ -47,5 +49,16 @@ export class UserService {
     return this.httpClient.post<any>(CHECK_CONNECTION, {})
   }
 
+  public getPredictedRecordings(): Observable<Recording[]>
+  {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    return this.httpClient.get<Recording[]>(GET_RECORDINGS, httpOptions)
+
+  }
 
 }

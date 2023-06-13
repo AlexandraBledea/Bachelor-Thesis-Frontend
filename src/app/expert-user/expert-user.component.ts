@@ -39,7 +39,7 @@ export class ExpertUserComponent implements OnInit, OnDestroy {
   selectedEmotion: any;
   selectedModel: any;
   models: string[] = ['English Ravdess', 'English Tess']
-  emotions: string[] = ['Anger', 'Happiness', 'Sadness', 'Fear', 'Surprised', 'Disgusted']
+  emotions: string[] = ['Anger', 'Happiness', 'Sadness', 'Fear', 'Surprised', 'Disgust']
   alreadyPredicted = false;
   usedModels: string[] = []
 
@@ -147,7 +147,6 @@ export class ExpertUserComponent implements OnInit, OnDestroy {
 
     let token = this.cookieService.get('Token')
     let email = parseJwt(token).sub
-
 
 
     this.audioBlob.arrayBuffer().then((buff: Iterable<number>) => {
@@ -333,19 +332,6 @@ export class ExpertUserComponent implements OnInit, OnDestroy {
     ).subscribe(result => {
       return;
     })
-  }
-
-
-  convertToImage(statistics: number[]) {
-    const bytes = new Uint8Array(statistics);
-
-    let binary_string = '';
-    for (let i = 0; i < bytes.length; i++) {
-      binary_string += String.fromCharCode(bytes[i]);
-    }
-
-    let blob = new Blob([bytes], {type: 'image/png'});
-    this.base64Image = URL.createObjectURL(blob);
   }
 
 

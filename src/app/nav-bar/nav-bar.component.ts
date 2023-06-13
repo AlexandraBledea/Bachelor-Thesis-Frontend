@@ -1,4 +1,4 @@
-import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {CookieService} from "ngx-cookie-service";
 import {Router} from "@angular/router";
 
@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 export class NavBarComponent {
 
 
-  constructor(private cookieService: CookieService, private router: Router, private renderer: Renderer2, private el: ElementRef) {
+  constructor(private cookieService: CookieService, private router: Router) {
   }
 
   simpleUser() {

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { LoginFormComponent } from './landing/login-panel/login-form/login-form.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-// import {MatInputModule} from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import {MatCardModule} from "@angular/material/card";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -25,7 +24,6 @@ import {HomeModule} from "./home/home.module";
 import { ExpertUserComponent } from './expert-user/expert-user.component';
 import { SimpleUserComponent } from './simple-user/simple-user.component';
 import {MatSelectModule} from "@angular/material/select";
-import { PredictionsTableComponent } from './predictions-table/predictions-table/predictions-table.component';
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
 import { PredictionsListComponent } from './predictions-list/predictions-list.component';
@@ -43,7 +41,6 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     HomeComponent,
     ExpertUserComponent,
     SimpleUserComponent,
-    PredictionsTableComponent,
     PredictionsListComponent,
     PredictionCardComponent
   ],

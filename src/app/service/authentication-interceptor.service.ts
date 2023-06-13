@@ -7,8 +7,7 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {CookieService} from "ngx-cookie-service";
-import {parseJwt} from "../utils/JWTParser";
-import {parse} from "url";
+
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
@@ -22,18 +21,6 @@ export class AuthenticationInterceptor implements HttpInterceptor {
     if (!request.url.includes("/login") && !request.url.includes("/register")) {
       const jwt = this.cookieService.get("Token");
 
-      const payload = parseJwt(jwt)
-
-      const datetime = payload.expiration
-      console.log(datetime)
-      // const date = parse(datetime, 'MM-dd-yyyy hh:mm:ss', new Date())
-      // console.log(date)
-      //
-      // if(Date.now() > date){
-      //
-      // }
-
-      // console.log(request.url)
       const headers: any = {"Authorization": `Bearer ${jwt}`};
       request = request.clone({setHeaders: headers});
     }

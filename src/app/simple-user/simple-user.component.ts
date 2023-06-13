@@ -9,18 +9,6 @@ import {PredictionsListComponent} from "../predictions-list/predictions-list.com
 import {catchError} from "rxjs/operators";
 import {throwError} from "rxjs";
 import {parseJwt} from "../utils/JWTParser";
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ChartComponent,
-  ApexDataLabels,
-  ApexPlotOptions,
-  ApexYAxis,
-  ApexTitleSubtitle,
-  ApexXAxis,
-  ApexFill
-} from "ng-apexcharts";
-
 
 @Component({
   selector: 'app-simple-user',
@@ -148,7 +136,21 @@ export class SimpleUserComponent implements OnInit, OnDestroy{
         actualEmotion: this.selectedEmotion,
         audio: Array.from(x)
       }
-      this.userService.sendRecordingSimpleUser(recodingData).subscribe(result => {
+      this.userService.sendRecordingSimpleUser(recodingData).pipe(catchError(error => {
+          if (error.status === 401) {
+            // Handle the UNAUTHORIZED error here
+            // For example, you can redirect to a login page or display an error message
+            console.log('UNAUTHORIZED error occurred');
+
+            this.cookieService.delete('Token');
+            // document.cookie = 'Token=; expires=Thu, 01-Jan-1970 00:00:01 GMT;';
+            this.router.navigate(['/login']);
+          }
+
+          // Rethrow the error to propagate it to the subscriber
+          return throwError(error);
+        })
+      ).subscribe(result => {
         this.predictionsList.addPredictionRecording(result)
 
         this.alreadyPredicted = true;
@@ -278,18 +280,6 @@ export class SimpleUserComponent implements OnInit, OnDestroy{
   }
 
 
-  convertToImage(statistics: number[]) {
-    const bytes = new Uint8Array(statistics);
-
-    let binary_string = '';
-    for (let i = 0; i < bytes.length; i++) {
-      binary_string += String.fromCharCode(bytes[i]);
-    }
-
-    let blob = new Blob([bytes], {type: 'image/png'});
-    this.base64Image = URL.createObjectURL(blob);
-  }
-
   checkConnection(){
     this.userService.checkConnection().pipe(catchError(error => {
         if (error.status === 401) {
@@ -313,8 +303,6 @@ export class SimpleUserComponent implements OnInit, OnDestroy{
   _downloadFile(data: any, type: string, filename: string): any {
     const blob = new Blob([data], { type: type });
     const url = window.URL.createObjectURL(blob);
-    //this.video.srcObject = stream;
-    //const url = data;
     const anchor = document.createElement('a');
     anchor.download = filename;
     anchor.href = url;

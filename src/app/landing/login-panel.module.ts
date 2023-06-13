@@ -9,7 +9,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
 
 import {LoginPanelComponent} from './login-panel/login-panel.component';
-import {Router, RouterModule, Routes} from '@angular/router';
+import {Routes} from '@angular/router';
 import {MatCardModule} from "@angular/material/card";
 import {RegisterPanelComponent} from "./register-panel/register-panel.component";
 import {HomeComponent} from "../home/home.component";
