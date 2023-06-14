@@ -31,7 +31,7 @@ import { PredictionCardComponent } from './predictions-list/prediction-card/pred
 import {NgApexchartsModule} from "ng-apexcharts";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ErrorInterceptor} from "./service/error-interceptor.service";
-import {TermsConditionsComponent} from "./landing/terms-conditions/terms-conditions.component";
+import {PrivacyStatementComponent} from "./landing/privacy-statement/privacy-statement.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +45,7 @@ import {TermsConditionsComponent} from "./landing/terms-conditions/terms-conditi
     SimpleUserComponent,
     PredictionsListComponent,
     PredictionCardComponent,
-    TermsConditionsComponent
+    PrivacyStatementComponent
   ],
   imports: [
     BrowserModule,

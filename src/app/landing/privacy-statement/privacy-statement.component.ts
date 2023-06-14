@@ -3,10 +3,10 @@ import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-terms-conditions',
-  templateUrl: './terms-conditions.component.html',
-  styleUrls: ['./terms-conditions.component.scss']
+  templateUrl: './privacy-statement.component.html',
+  styleUrls: ['./privacy-statement.component.scss']
 })
-export class TermsConditionsComponent implements OnInit{
+export class PrivacyStatementComponent implements OnInit{
 
   constructor(private router: Router){
 
