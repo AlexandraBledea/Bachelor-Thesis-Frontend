@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://20.223.159.18:5000/",
+    "secure": false
+  }
+}

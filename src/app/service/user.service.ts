@@ -6,7 +6,7 @@ import {UserRegisterData} from "../shared/data-type/UserRegisterData";
 import {UserChangePasswordData} from "../shared/data-type/UserChangePasswordData";
 import {Recording} from "../shared/data-type/Recording";
 
-const URL_BASE = "http://20.223.159.18:8080/"
+const URL_BASE = "https://127.0.0.1:5000/"
 
 
 const LOGIN = URL_BASE + "login"
