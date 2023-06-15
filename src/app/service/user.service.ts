@@ -6,7 +6,7 @@ import {UserRegisterData} from "../shared/data-type/UserRegisterData";
 import {UserChangePasswordData} from "../shared/data-type/UserChangePasswordData";
 import {Recording} from "../shared/data-type/Recording";
 
-const URL_BASE = "https://20.223.159.18:5000/"
+const URL_BASE = "https://20.223.159.18:8080/"
 
 
 const LOGIN = URL_BASE + "login"
@@ -30,6 +30,7 @@ export class UserService {
   }
 
   public register(registerData: UserRegisterData): Observable<any> {
+
     return this.httpClient.post<any>(REGISTER, registerData);
   }
 
